@@ -23,10 +23,16 @@ public class OrdersServices {
     @Autowired
     private ItemsRepository itemsRepository;
 
+    private EmailService emailService;
+
     public ResponseEntity<Orders> createAOrder(long idCustomer, long idItems,Orders newOrder){
         if (customersRepository.existsById(idCustomer) && itemsRepository.existsById(idItems)){
             ordersRepository.saveAndFlush(newOrder);
+            Customers customer = customersRepository.getReferenceById(idCustomer);
+            emailService.sendEmail(customer.getEmail(), "Order",
+                    "Dear " + customer.getName() + " " + customer.getSurname() + " ,the order was accepted");
             return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
+
         }
        else
            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -49,6 +55,9 @@ public class OrdersServices {
         if(ordersRepository.existsById(idOrder)&& customersRepository.existsById(idCustomer) &&
                 itemsRepository.existsById(idItem)){
             ordersRepository.saveAndFlush(orderChanged);
+            Customers customer = customersRepository.getReferenceById(idCustomer);
+            emailService.sendEmail(customer.getEmail(), "Order Changed",
+                    "Dear " + customer.getName() + customer.getSurname() + " ,the order was successfully updated");
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
         else

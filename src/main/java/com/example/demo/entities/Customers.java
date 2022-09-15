@@ -24,6 +24,8 @@ public class Customers {
 
     private String surname;
 
-    private String shippingPlace;
+    private String email;
+
+
 
 }
