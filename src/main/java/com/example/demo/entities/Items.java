@@ -23,4 +23,5 @@ public class Items {
     private String itemType;
 
     private double price;
+
 }

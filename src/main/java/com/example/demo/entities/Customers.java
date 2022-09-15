@@ -25,4 +25,5 @@ public class Customers {
     private String surname;
 
     private String shippingPlace;
+
 }
