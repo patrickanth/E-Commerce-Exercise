@@ -23,7 +23,7 @@ public class OrdersServices {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    public ResponseEntity<Orders> createACustomer(long idCustomer, long idItems,Orders newOrder){
+    public ResponseEntity<Orders> createAOrder(long idCustomer, long idItems,Orders newOrder){
         if (customersRepository.existsById(idCustomer) && itemsRepository.existsById(idItems)){
             ordersRepository.saveAndFlush(newOrder);
             return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
@@ -44,7 +44,7 @@ public class OrdersServices {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Customers> updateOrder(long idCustomer, long idItem, long idOrder, Orders orderChanged)
+    public ResponseEntity<Orders> updateOrder(long idCustomer, long idItem, long idOrder, Orders orderChanged)
     {
         if(ordersRepository.existsById(idOrder)&& customersRepository.existsById(idCustomer) &&
                 itemsRepository.existsById(idItem)){
@@ -55,7 +55,7 @@ public class OrdersServices {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Customers> deleteOrder(long idCustomer, long idItem , long idOrder){
+    public ResponseEntity<Orders> deleteOrder(long idCustomer, long idItem , long idOrder){
         if(customersRepository.existsById(idCustomer) && itemsRepository.existsById(idItem)
                 && ordersRepository.existsById(idOrder)){
             ordersRepository.deleteById(idOrder);
