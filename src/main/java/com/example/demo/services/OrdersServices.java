@@ -2,7 +2,6 @@ package com.example.demo.services;
 
 import com.example.demo.controllers.CustomersController;
 import com.example.demo.entities.Customers;
-import com.example.demo.entities.Items;
 import com.example.demo.entities.Orders;
 import com.example.demo.repositories.CustomersRepository;
 import com.example.demo.repositories.ItemsRepository;
@@ -19,7 +18,7 @@ import java.util.List;
 @Service
 public class OrdersServices {
 
-    Logger logger = LoggerFactory.getLogger(CustomersController.class);
+    private Logger logger = LoggerFactory.getLogger(CustomersController.class);
     @Autowired
     private OrdersRepository ordersRepository;
     @Autowired
@@ -29,7 +28,7 @@ public class OrdersServices {
 
     private EmailService emailService;
 
-    public ResponseEntity<Orders> createAOrder(long idCustomer, long idItems,Orders newOrder){
+    public ResponseEntity<Orders> createAOrder(long idCustomer, long idItems, Orders newOrder){
         logger.debug("This method create a order OrdersServices");
         if (customersRepository.existsById(idCustomer) && itemsRepository.existsById(idItems)){
             ordersRepository.saveAndFlush(newOrder);

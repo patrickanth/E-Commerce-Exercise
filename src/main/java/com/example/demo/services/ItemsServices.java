@@ -1,9 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.controllers.CustomersController;
-import com.example.demo.entities.Customers;
 import com.example.demo.entities.Items;
-import com.example.demo.repositories.CustomersRepository;
 import com.example.demo.repositories.ItemsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +14,14 @@ import java.util.List;
 @Service
 public class ItemsServices {
 
-    Logger logger = LoggerFactory.getLogger(ItemsServices.class);
+    private Logger logger = LoggerFactory.getLogger(ItemsServices.class);
     @Autowired
     private ItemsRepository itemsRepository;
 
-    public ResponseEntity<Items> createAItem(Items items){
+    public ResponseEntity<Items> createAItem(Items itemsDTO){
         logger.debug("This method create a new Item in ItemsServices");
-        itemsRepository.saveAndFlush(items);
-        return new ResponseEntity<>(items, HttpStatus.CREATED);
+        itemsRepository.saveAndFlush(itemsDTO);
+        return new ResponseEntity<>(itemsDTO, HttpStatus.CREATED);
     }
 
     public List<Items> findAllItems(){
@@ -41,10 +38,10 @@ public class ItemsServices {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Items> updateItems(long id,Items items){
+    public ResponseEntity<Items> updateItems(long id, Items itemsDTO){
         logger.debug("This method update one item in ItemsServices");
         if(itemsRepository.existsById(id)){
-            itemsRepository.saveAndFlush(items);
+            itemsRepository.saveAndFlush(itemsDTO);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
         else

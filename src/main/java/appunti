@@ -5,7 +5,7 @@ The application should be able to manage:
 • Orders
 • Items
 A customer is an Entity that represents the one who want to buy an item.
-Order is an Entity that represents the items ordered and who made the order.
+Order is an Entity that represents the itemsDTO ordered and who made the order.
 Item is an Entity that represents the object to buy.
 When an order is emitted you must send an email to the customer informing that the order was accepted.
 You must track every action made by a customer using a logging system.

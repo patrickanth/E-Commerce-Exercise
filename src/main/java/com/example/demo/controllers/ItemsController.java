@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.entities.Customers;
 import com.example.demo.entities.Items;
-import com.example.demo.services.CustomersServices;
 import com.example.demo.services.ItemsServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

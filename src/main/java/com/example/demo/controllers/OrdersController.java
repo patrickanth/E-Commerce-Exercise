@@ -19,7 +19,7 @@ public class OrdersController {
     @Autowired
     private OrdersServices ordersServices;
     @PostMapping("/create")
-    public ResponseEntity<Orders> createOrder(long idCustomer, long idItems ,@RequestBody Orders order){
+    public ResponseEntity<Orders> createOrder(long idCustomer, long idItems , @RequestBody Orders order){
         logger.info("creating a order in controller");
         return  ordersServices.createAOrder(idCustomer,idItems,order);
     }

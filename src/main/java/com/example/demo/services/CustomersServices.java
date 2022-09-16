@@ -1,6 +1,5 @@
 package com.example.demo.services;
 
-import com.example.demo.controllers.CustomersController;
 import com.example.demo.entities.Customers;
 import com.example.demo.repositories.CustomersRepository;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class CustomersServices {
 
-    Logger logger = LoggerFactory.getLogger(CustomersServices.class);
+    private Logger logger = LoggerFactory.getLogger(CustomersServices.class);
 
     @Autowired
     private CustomersRepository customersRepository;
@@ -40,7 +39,7 @@ public class CustomersServices {
            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Customers> updateCustomer(long id,Customers customers){
+    public ResponseEntity<Customers> updateCustomer(long id, Customers customers){
         logger.debug("This method update a customer in CustomerService");
         if(customersRepository.existsById(id)){
             customersRepository.saveAndFlush(customers);

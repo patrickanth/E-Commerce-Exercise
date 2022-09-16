@@ -8,12 +8,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class EmailService {
 
-    Logger logger = LoggerFactory.getLogger(EmailService.class);
+    private Logger logger = LoggerFactory.getLogger(EmailService.class);
     @Autowired
-    JavaMailSender mailSender;
+    private JavaMailSender mailSender;
 
     public void sendEmail(String email,String title, String text){
         logger.debug("this method send an email to customer in EmailService");
